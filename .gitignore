@@ -216,3 +216,74 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Bytecode
+
+__pycache__/
+
+*.pyc
+
+*.pyo
+
+*.pyd
+
+# Virtual Environment
+
+.venv/
+
+venv/
+
+env/
+
+# VSCode
+
+.vscode/
+
+# Pytest
+
+.pytest_cache/
+
+# Coverage
+
+.coverage
+
+htmlcov/
+
+# Reports
+
+reports/*.json
+
+reports/*.csv
+
+reports/*.md
+
+!reports/.gitkeep
+
+# Output Images
+
+outputs/review_images/
+
+outputs/logs/
+
+!outputs/review_images/.gitkeep
+
+!outputs/logs/.gitkeep
+
+# OS
+
+.DS_Store
+
+Thumbs.db
+
+# Temporary
+
+*.tmp
+
+*.bak
+
+# Build
+
+dist/
+
+build/
+
+*.egg-info/
