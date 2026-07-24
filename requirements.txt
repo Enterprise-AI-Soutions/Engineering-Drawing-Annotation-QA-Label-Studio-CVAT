@@ -1,0 +1,9 @@
+Pillow>=11.0.0
+
+pytest>=8.2.0
+
+lxml>=5.2.0
+
+xmltodict>=0.13.0
+
+pandas>=2.2.0
