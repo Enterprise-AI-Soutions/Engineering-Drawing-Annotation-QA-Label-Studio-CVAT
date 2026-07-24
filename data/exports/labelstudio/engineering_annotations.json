@@ -1,0 +1,125 @@
+[
+  {
+    "id": 1,
+    "data": {
+      "image": "/data/drawings/pump_layout_001.png"
+    },
+    "meta": { "width": 1920, "height": 1080 },
+    "annotations": [
+      {
+        "id": 101,
+        "completed_by": { "email": "annotator1@example.com" },
+        "result": [
+          {
+            "id": "ls_r001",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 10.0, "y": 15.0, "width": 12.0, "height": 8.0,
+              "rectanglelabels": ["pump"]
+            }
+          },
+          {
+            "id": "ls_r002",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 35.0, "y": 20.0, "width": 8.0, "height": 6.0,
+              "rectanglelabels": ["valve"]
+            }
+          },
+          {
+            "id": "ls_r003",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 60.0, "y": 10.0, "width": 30.0, "height": 3.0,
+              "rectanglelabels": ["pipe"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "data": {
+      "image": "/data/drawings/piping_layout_001.png"
+    },
+    "meta": { "width": 1920, "height": 1080 },
+    "annotations": [
+      {
+        "id": 102,
+        "completed_by": { "email": "annotator1@example.com" },
+        "result": [
+          {
+            "id": "ls_r004",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 5.0, "y": 5.0, "width": 20.0, "height": 15.0,
+              "rectanglelabels": ["tank"]
+            }
+          },
+          {
+            "id": "ls_r005",
+            "type": "polygonlabels",
+            "value": {
+              "points": [[40.0, 20.0], [60.0, 20.0], [55.0, 40.0], [42.0, 40.0]],
+              "polygonlabels": ["junction"]
+            }
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "completed_by": { "email": "annotator2@example.com" },
+        "result": [
+          {
+            "id": "ls_r006",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 5.2, "y": 5.1, "width": 19.8, "height": 14.9,
+              "rectanglelabels": ["tank"]
+            }
+          },
+          {
+            "id": "ls_r007",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 70.0, "y": 30.0, "width": 10.0, "height": 8.0,
+              "rectanglelabels": ["sensor"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "data": {
+      "image": "/data/drawings/gearbox_section_001.png"
+    },
+    "meta": { "width": 1920, "height": 1080 },
+    "annotations": [
+      {
+        "id": 104,
+        "completed_by": { "email": "annotator2@example.com" },
+        "result": [
+          {
+            "id": "ls_r008",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 20.0, "y": 25.0, "width": 15.0, "height": 20.0,
+              "rectanglelabels": ["motor"]
+            }
+          },
+          {
+            "id": "ls_r009",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 50.0, "y": 10.0, "width": 5.0, "height": 5.0,
+              "rectanglelabels": ["fitting"]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

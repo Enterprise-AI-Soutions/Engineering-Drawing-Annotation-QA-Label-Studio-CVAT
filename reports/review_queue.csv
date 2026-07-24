@@ -1,0 +1,6 @@
+image,priority,reason,validation_status,validation_issues,mean_agreement_f1,single_annotator,region_count
+valve_assembly_001.png,1,validation_failed,fail,Region cvat_r011: bbox area 8000px² — please verify label correctness,N/A,yes,5
+piping_layout_001.png,2,low_agreement,pass,,0.667,no,2
+pump_layout_001.png,3,single_annotator_complex,pass,,N/A,yes,3
+hydraulic_system_001.png,3,single_annotator_complex,pass,,N/A,yes,5
+motor_wiring_001.png,3,single_annotator_complex,pass,,N/A,yes,4

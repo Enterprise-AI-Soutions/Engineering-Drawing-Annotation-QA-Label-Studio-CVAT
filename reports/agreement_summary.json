@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "total_images": 4,
+    "images_with_multiple_annotators": 1,
+    "iou_match_threshold": 0.5,
+    "overall_mean_f1": 0.82
+  },
+  "per_annotator": {
+    "annotator1@example.com":    {"mean_f1": 0.82, "pair_count": 1},
+    "annotator2@example.com":    {"mean_f1": 0.82, "pair_count": 1}
+  },
+  "per_image": [
+    {
+      "image": "pump_layout_001.png",
+      "annotators": ["annotator1@example.com"],
+      "pairs": [],
+      "note": "Only one annotator — agreement cannot be computed"
+    },
+    {
+      "image": "piping_layout_001.png",
+      "annotators": ["annotator1@example.com", "annotator2@example.com"],
+      "pairs": [
+        {
+          "annotator_a": "annotator1@example.com",
+          "annotator_b": "annotator2@example.com",
+          "matched_regions": 1,
+          "only_in_a": 1,
+          "only_in_b": 1,
+          "f1_score": 0.667
+        }
+      ],
+      "mean_f1": 0.667
+    },
+    {
+      "image": "hydraulic_system_001.png",
+      "annotators": ["cvat_annotator@example.com"],
+      "pairs": [],
+      "note": "Only one annotator — agreement cannot be computed"
+    },
+    {
+      "image": "motor_wiring_001.png",
+      "annotators": ["cvat_annotator@example.com"],
+      "pairs": [],
+      "note": "Only one annotator — agreement cannot be computed"
+    },
+    {
+      "image": "valve_assembly_001.png",
+      "annotators": ["cvat_annotator@example.com"],
+      "pairs": [],
+      "note": "Only one annotator — agreement cannot be computed"
+    }
+  ]
+}
