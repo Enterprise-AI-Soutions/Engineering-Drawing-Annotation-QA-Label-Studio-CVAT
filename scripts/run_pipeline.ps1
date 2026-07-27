@@ -26,7 +26,8 @@ if (-not (Test-Path $DRAWINGS_DIR)) {
     exit 1
 }
 
-$images = Get-ChildItem -Path $DRAWINGS_DIR -Include "*.png","*.jpg","*.jpeg","*.tif","*.tiff","*.bmp" -File
+$images = @(Get-ChildItem -Path $DRAWINGS_DIR -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.Extension -match '^\.(png|jpg|jpeg|tif|tiff|bmp)$' })
 if ($images.Count -eq 0) {
     Write-Host ""
     Write-Host "ERROR: No drawing images found in: $DRAWINGS_DIR" -ForegroundColor Red
