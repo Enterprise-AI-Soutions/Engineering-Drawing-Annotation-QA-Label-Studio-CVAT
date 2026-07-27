@@ -43,6 +43,45 @@ def ensure_dir(path: str | Path) -> Path:
     return p
 
 
+# ── Drawings directory guard ───────────────────────────────────────────────────
+
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp"}
+
+
+def check_drawings_dir(drawings_dir: str | Path) -> list[Path]:
+    """
+    Verify that *drawings_dir* exists and contains at least one image file.
+
+    Raises SystemExit with a descriptive message if the check fails.
+    Returns the list of found image paths on success.
+    """
+    p = Path(drawings_dir)
+
+    if not p.exists():
+        log.error(
+            "Drawings folder not found: %s\n"
+            "  Create the folder and add your engineering drawing images (.png, .jpg, .tif)\n"
+            "  before running the pipeline.",
+            p,
+        )
+        raise SystemExit(1)
+
+    images = [f for f in p.iterdir() if f.is_file() and f.suffix.lower() in IMAGE_EXTENSIONS]
+
+    if not images:
+        log.error(
+            "No drawing images found in: %s\n"
+            "  The pipeline requires at least one image file (.png, .jpg, .tif, .tiff).\n"
+            "  Add your engineering drawings to that folder and re-run.\n"
+            "  See README.md → 'Adding Your Own Drawings' for details.",
+            p,
+        )
+        raise SystemExit(1)
+
+    log.info("Found %d drawing image(s) in %s", len(images), p)
+    return images
+
+
 # ── Geometry helpers ──────────────────────────────────────────────────────────
 
 def xywh_to_xyxy(x: float, y: float, w: float, h: float) -> tuple[float, float, float, float]:

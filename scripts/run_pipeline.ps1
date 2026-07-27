@@ -7,8 +7,39 @@ $ErrorActionPreference = "Stop"
 
 $ROOT = Split-Path -Parent $PSScriptRoot
 $SRC  = "$ROOT\src"
+$DRAWINGS_DIR = "$ROOT\data\drawings"
 
 Write-Host "`n=== Engineering Drawing Annotation QA Pipeline ===" -ForegroundColor Cyan
+
+# ── Pre-flight: verify drawings folder exists and contains images ─────────────
+Write-Host "`n[CHECK] Verifying drawings folder..." -ForegroundColor Magenta
+
+if (-not (Test-Path $DRAWINGS_DIR)) {
+    Write-Host ""
+    Write-Host "ERROR: Drawings folder not found: $DRAWINGS_DIR" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "  Please create the folder and add your engineering drawing images:" -ForegroundColor Yellow
+    Write-Host "    mkdir data\drawings" -ForegroundColor Gray
+    Write-Host "    # Copy your .png / .jpg / .tif files into data\drawings\" -ForegroundColor Gray
+    Write-Host ""
+    Write-Host "  See README.md -> 'Adding Your Own Drawings' for details." -ForegroundColor Yellow
+    exit 1
+}
+
+$images = Get-ChildItem -Path $DRAWINGS_DIR -Include "*.png","*.jpg","*.jpeg","*.tif","*.tiff","*.bmp" -File
+if ($images.Count -eq 0) {
+    Write-Host ""
+    Write-Host "ERROR: No drawing images found in: $DRAWINGS_DIR" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "  The pipeline requires at least one image file." -ForegroundColor Yellow
+    Write-Host "  Supported formats: .png  .jpg  .jpeg  .tif  .tiff  .bmp" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "  Add your engineering drawings to data\drawings\ and re-run." -ForegroundColor Yellow
+    Write-Host "  See README.md -> 'Adding Your Own Drawings' for details." -ForegroundColor Yellow
+    exit 1
+}
+
+Write-Host "  Found $($images.Count) drawing image(s) in data\drawings\" -ForegroundColor Green
 
 # ── Step 1: Convert Label Studio export ──────────────────────────────────────
 Write-Host "`n[1/6] Converting Label Studio export..." -ForegroundColor Yellow

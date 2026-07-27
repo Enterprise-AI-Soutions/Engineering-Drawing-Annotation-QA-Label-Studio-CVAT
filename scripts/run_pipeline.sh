@@ -6,9 +6,45 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC="$ROOT/src"
+DRAWINGS_DIR="$ROOT/data/drawings"
 
 echo ""
 echo "=== Engineering Drawing Annotation QA Pipeline ==="
+
+# ── Pre-flight: verify drawings folder exists and contains images ─────────────
+echo ""
+echo "[CHECK] Verifying drawings folder..."
+
+if [ ! -d "$DRAWINGS_DIR" ]; then
+    echo ""
+    echo "ERROR: Drawings folder not found: $DRAWINGS_DIR" >&2
+    echo "" >&2
+    echo "  Please create the folder and add your engineering drawing images:" >&2
+    echo "    mkdir -p data/drawings" >&2
+    echo "    # Copy your .png / .jpg / .tif files into data/drawings/" >&2
+    echo "" >&2
+    echo "  See README.md -> 'Adding Your Own Drawings' for details." >&2
+    exit 1
+fi
+
+image_count=$(find "$DRAWINGS_DIR" -maxdepth 1 -type f \
+    \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \
+       -o -iname "*.tif" -o -iname "*.tiff" -o -iname "*.bmp" \) \
+    | wc -l)
+
+if [ "$image_count" -eq 0 ]; then
+    echo "" >&2
+    echo "ERROR: No drawing images found in: $DRAWINGS_DIR" >&2
+    echo "" >&2
+    echo "  The pipeline requires at least one image file." >&2
+    echo "  Supported formats: .png  .jpg  .jpeg  .tif  .tiff  .bmp" >&2
+    echo "" >&2
+    echo "  Add your engineering drawings to data/drawings/ and re-run." >&2
+    echo "  See README.md -> 'Adding Your Own Drawings' for details." >&2
+    exit 1
+fi
+
+echo "  Found $image_count drawing image(s) in data/drawings/"
 
 # ── Step 1: Convert Label Studio export ──────────────────────────────────────
 echo ""

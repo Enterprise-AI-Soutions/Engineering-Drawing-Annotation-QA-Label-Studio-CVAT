@@ -8,6 +8,22 @@ A lightweight, **zero-heavy-dependency** Python pipeline for converting, validat
 
 ---
 
+## ⚠️ Before You Run
+
+**The pipeline requires your engineering drawing images to be present in `data/drawings/`.**  
+It will refuse to run and display a clear error if that folder is missing or empty.
+
+```
+ERROR: No drawing images found in: data/drawings/
+  The pipeline requires at least one image file (.png, .jpg, .tif, .tiff).
+  Add your engineering drawings to that folder and re-run.
+  See README.md -> 'Adding Your Own Drawings' for details.
+```
+
+See [Adding Your Own Drawings](#adding-your-own-drawings) below.
+
+---
+
 ## What It Does
 
 | Step | Script | Input | Output |
@@ -29,11 +45,11 @@ A lightweight, **zero-heavy-dependency** Python pipeline for converting, validat
 Engineering-Drawing-Annotation-QA/
 │
 ├── .github/
-│   └── workflows/ci.yml          # GitHub Actions — test on Python 3.10/3.11/3.12
+│   └── workflows/ci.yml              # GitHub Actions — test on Python 3.10/3.11/3.12
 │
 ├── data/
-│   ├── drawings/                  # Raw engineering drawing images
-│   │   ├── pump_layout_001.png
+│   ├── drawings/                      # ← Your engineering drawing images go here
+│   │   ├── pump_layout_001.png        #   (pipeline will not run without these)
 │   │   ├── piping_layout_001.png
 │   │   ├── gearbox_section_001.png
 │   │   ├── hydraulic_system_001.png
@@ -50,25 +66,18 @@ Engineering-Drawing-Annotation-QA/
 │   └── normalized/
 │       └── annotations.json                   # Merged normalized output
 │
-├── docs/
-│   ├── images/
-│   ├── architecture.png
-│   └── workflow.png
-│
 ├── outputs/
-│   ├── review_images/             # Annotated images written by draw_annotations.py
-│   ├── reports/
-│   └── logs/
+│   └── review_images/                 # Annotated images written by draw_annotations.py
 │
 ├── reports/
-│   ├── validation_report.json     # Per-record validation results
-│   ├── agreement_summary.json     # Inter-annotator F1 scores
-│   ├── review_queue.csv           # Prioritised images for review
-│   └── annotation_report.md      # Full Markdown QA report
+│   ├── validation_report.json         # Per-record validation results
+│   ├── agreement_summary.json         # Inter-annotator F1 scores
+│   ├── review_queue.csv               # Prioritised images for review
+│   └── annotation_report.md           # Full Markdown QA report
 │
 ├── scripts/
-│   ├── run_pipeline.ps1           # Windows (PowerShell)
-│   └── run_pipeline.sh            # macOS / Linux (Bash)
+│   ├── run_pipeline.ps1               # Windows (PowerShell)
+│   └── run_pipeline.sh                # macOS / Linux (Bash)
 │
 ├── src/
 │   ├── convert_labelstudio.py
@@ -98,6 +107,32 @@ Engineering-Drawing-Annotation-QA/
 
 ---
 
+## Adding Your Own Drawings
+
+> **The pipeline will not run without drawings.** This is intentional — running without images produces meaningless output.
+
+**Step 1 — Add your drawings:**
+
+```
+data/drawings/
+    your_drawing_001.png
+    your_drawing_002.png
+    ...
+```
+
+Accepted formats: `.png` `.jpg` `.jpeg` `.tif` `.tiff` `.bmp`
+
+**Step 2 — Annotate them in Label Studio or CVAT:**
+
+| Tool | How to export | Save to |
+|---|---|---|
+| **Label Studio** | Project → Export → **JSON** | `data/exports/labelstudio/engineering_annotations.json` |
+| **CVAT** | Actions → Export dataset → **CVAT for Images 1.1** (XML) | `data/exports/cvat/annotations.xml` |
+
+> The filename inside the annotation export (e.g. `"image": "your_drawing_001.png"`) must exactly match the filename in `data/drawings/`.
+
+---
+
 ## Quick Start
 
 ### Requirements
@@ -114,21 +149,28 @@ cd Engineering-Drawing-Annotation-QA
 pip install -r requirements.txt
 ```
 
-### 2. Run the full pipeline
+### 2. Add your drawings and annotation exports
+
+See [Adding Your Own Drawings](#adding-your-own-drawings) above.
+
+### 3. Run the full pipeline
 
 **Windows (PowerShell):**
+
 ```powershell
 .\scripts\run_pipeline.ps1
 ```
 
 **macOS / Linux:**
+
 ```bash
 bash scripts/run_pipeline.sh
 ```
 
-### 3. Run individual steps
+### 4. Run individual steps
 
 **Convert Label Studio export:**
+
 ```bash
 python src/convert_labelstudio.py \
     --input  data/exports/labelstudio/engineering_annotations.json \
@@ -136,6 +178,7 @@ python src/convert_labelstudio.py \
 ```
 
 **Convert CVAT XML export:**
+
 ```bash
 python src/convert_cvat.py \
     --input  data/exports/cvat/annotations.xml \
@@ -143,6 +186,7 @@ python src/convert_cvat.py \
 ```
 
 **Merge multiple sources:**
+
 ```bash
 python src/normalize_annotations.py \
     --inputs data/exports/labelstudio/engineering_annotations.json \
@@ -151,6 +195,7 @@ python src/normalize_annotations.py \
 ```
 
 **Validate:**
+
 ```bash
 python src/validate_annotations.py \
     --input  data/normalized/annotations.json \
@@ -158,6 +203,7 @@ python src/validate_annotations.py \
 ```
 
 **Inter-annotator agreement:**
+
 ```bash
 python src/agreement_analysis.py \
     --input  data/normalized/annotations.json \
@@ -165,6 +211,7 @@ python src/agreement_analysis.py \
 ```
 
 **Build review queue:**
+
 ```bash
 python src/create_review_queue.py \
     --validation reports/validation_report.json \
@@ -173,6 +220,7 @@ python src/create_review_queue.py \
 ```
 
 **Generate full report:**
+
 ```bash
 python src/generate_report.py \
     --validation reports/validation_report.json \
@@ -182,6 +230,7 @@ python src/generate_report.py \
 ```
 
 **Draw annotations on images (requires Pillow):**
+
 ```bash
 python src/draw_annotations.py \
     --annotations data/normalized/annotations.json \
@@ -198,6 +247,7 @@ pytest tests/ -v
 ```
 
 With coverage:
+
 ```bash
 pytest tests/ -v --cov=src --cov-report=term-missing
 ```

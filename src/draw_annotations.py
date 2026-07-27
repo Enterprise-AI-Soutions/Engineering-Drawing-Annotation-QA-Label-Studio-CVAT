@@ -17,7 +17,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from utils import get_logger, load_json
+from utils import get_logger, load_json, check_drawings_dir
 
 log = get_logger(__name__)
 
@@ -104,6 +104,9 @@ def main() -> None:
     parser.add_argument("--drawings", default="data/drawings")
     parser.add_argument("--output", default="outputs/review_images")
     args = parser.parse_args()
+
+    # ── Guard: fail immediately if drawings folder is missing or empty ──────
+    check_drawings_dir(args.drawings)
 
     data = load_json(args.annotations)
     annotations = data.get("annotations", [])
