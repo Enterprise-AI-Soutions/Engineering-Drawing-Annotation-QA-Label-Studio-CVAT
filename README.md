@@ -400,15 +400,15 @@ Supported region types: `bbox`, `polygon`, `polyline`
 ---
 ### Pytest Outputs
 
-output/review_images [Test_vscode1]
+outputs/review_images [Test_vscode1]
 
-output/review_images [Test_vscode2]
+outputs/review_images [Test_vscode2]
 
-output/review_images [Test_vscode3]
+outputs/review_images [Test_vscode3]
 
-output/review_images [Test_vscode4]
+outputs/review_images [Test_vscode4]
 
-output/review_images [Test_vscode5]
+outputs/review_images [Test_vscode5]
 
 
 
