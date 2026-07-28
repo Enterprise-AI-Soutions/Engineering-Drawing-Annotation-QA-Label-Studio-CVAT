@@ -187,10 +187,11 @@ See [Adding Your Own Drawings](#adding-your-own-drawings) above.
 .\scripts\run_pipeline.ps1
 ```
 
-**macOS / Linux:**
+**macOS / Linux /VSCode:**
 
 ```bash
-bash scripts/run_pipeline.sh
+chmod +x scripts/run_pipeline.sh
+scripts/run_pipeline.sh
 ```
 
 ### 4. Run individual steps
