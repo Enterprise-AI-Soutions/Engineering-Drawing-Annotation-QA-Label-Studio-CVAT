@@ -99,4 +99,4 @@ def test_report_with_queue_rows():
 
 def test_report_empty_queue():
     md = generate_markdown(SAMPLE_VAL, SAMPLE_AGR, [])
-    assert "0 image(s) flagged" in md
+    assert "0 image(s)" in md

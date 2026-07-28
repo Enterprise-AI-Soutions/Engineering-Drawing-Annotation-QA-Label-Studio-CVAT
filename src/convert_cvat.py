@@ -124,14 +124,18 @@ def convert(xml_path: str) -> dict:
             # Real CVAT exports have <assignee><email>...</email></assignee>
             assignee_elem = job.find("assignee")
             if assignee_elem is not None:
+                # New CVAT format: <assignee><email>...</email></assignee>
                 email = assignee_elem.findtext("email")
                 username = assignee_elem.findtext("username")
-                annotator = email or username or annotator
+                # Old CVAT format: <assignee>email@example.com</assignee>
+                plain_text = (assignee_elem.text or "").strip()
+                annotator = email or username or plain_text or annotator
             else:
-                # Fallback: plain text <assignee> tag
+                # Fallback: job.findtext reads plain-text <assignee> tag
                 assignee_text = job.findtext("assignee")
                 if assignee_text and assignee_text.strip():
                     annotator = assignee_text.strip()
+
 
     records: list[dict] = []
 
