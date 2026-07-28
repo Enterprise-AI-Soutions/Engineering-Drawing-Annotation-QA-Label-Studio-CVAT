@@ -156,6 +156,9 @@ Supported CVAT annotation types: `<box>`, `<polygon>`, `<polyline>`
 > The filename inside the annotation export (e.g. `"image": "your_drawing_001.png"`) must exactly match the filename in `data/drawings/`.
 
 ### CVAT Annotation using Docker
+
+**Windows (PowerShell):**
+
 Verify Docker
 
 docker --version
@@ -200,7 +203,7 @@ Email -    your email
 
 Open - http://localhost:8080
 
-Enter Login & password
+Enter username & password
 
 Superuser created successfully for drawings/image annotation
 
@@ -210,7 +213,7 @@ exit
 
 ### Label Studio Annotation using Docker
 
-Windows Powershell
+**Windows (PowerShell):**
 
 docker run -it `
 
