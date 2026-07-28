@@ -81,6 +81,33 @@ def _parse_polygon(elem: ET.Element) -> dict | None:
     }
 
 
+def _parse_polyline(elem: ET.Element) -> dict | None:
+    """Parse a <polyline> element into a normalized polyline region."""
+    label = elem.get("label", "").lower()
+    points_str = elem.get("points", "")
+    if not points_str:
+        return None
+
+    points = []
+    for pair in points_str.split(";"):
+        try:
+            px, py = pair.split(",")
+            points.append([round(float(px)), round(float(py))])
+        except ValueError:
+            continue
+
+    if not points:
+        return None
+
+    return {
+        "id": new_id("cvat"),
+        "label": label,
+        "polyline": points,
+        "type": "polyline",
+        "confidence": float(elem.get("confidence", 1.0)),
+    }
+
+
 # ── Main converter ────────────────────────────────────────────────────────────
 
 def convert(xml_path: str) -> dict:
@@ -94,8 +121,17 @@ def convert(xml_path: str) -> dict:
     if meta is not None:
         job = meta.find("job")
         if job is not None:
-            assignee = job.findtext("assignee") or annotator
-            annotator = assignee
+            # Real CVAT exports have <assignee><email>...</email></assignee>
+            assignee_elem = job.find("assignee")
+            if assignee_elem is not None:
+                email = assignee_elem.findtext("email")
+                username = assignee_elem.findtext("username")
+                annotator = email or username or annotator
+            else:
+                # Fallback: plain text <assignee> tag
+                assignee_text = job.findtext("assignee")
+                if assignee_text and assignee_text.strip():
+                    annotator = assignee_text.strip()
 
     records: list[dict] = []
 
@@ -110,6 +146,8 @@ def convert(xml_path: str) -> dict:
                 parsed = _parse_box(child)
             elif child.tag == "polygon":
                 parsed = _parse_polygon(child)
+            elif child.tag == "polyline":
+                parsed = _parse_polyline(child)
             else:
                 parsed = None
 

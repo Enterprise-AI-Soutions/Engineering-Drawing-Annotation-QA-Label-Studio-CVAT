@@ -2,36 +2,20 @@
   {
     "id": 1,
     "data": {
-      "image": "/data/drawings/pump_layout_001.png"
+      "image": "/data/drawings/pump_001.png"
     },
-    "meta": { "width": 1920, "height": 1080 },
+    "meta": { "width": 2500, "height": 2500 },
     "annotations": [
       {
         "id": 101,
-        "completed_by": { "email": "annotator1@example.com" },
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
         "result": [
           {
             "id": "ls_r001",
             "type": "rectanglelabels",
             "value": {
-              "x": 10.0, "y": 15.0, "width": 12.0, "height": 8.0,
+              "x": 16.0, "y": 14.0, "width": 78.0, "height": 55.0,
               "rectanglelabels": ["pump"]
-            }
-          },
-          {
-            "id": "ls_r002",
-            "type": "rectanglelabels",
-            "value": {
-              "x": 35.0, "y": 20.0, "width": 8.0, "height": 6.0,
-              "rectanglelabels": ["valve"]
-            }
-          },
-          {
-            "id": "ls_r003",
-            "type": "rectanglelabels",
-            "value": {
-              "x": 60.0, "y": 10.0, "width": 30.0, "height": 3.0,
-              "rectanglelabels": ["pipe"]
             }
           }
         ]
@@ -41,50 +25,28 @@
   {
     "id": 2,
     "data": {
-      "image": "/data/drawings/piping_layout_001.png"
+      "image": "/data/drawings/valve_001.jpg"
     },
-    "meta": { "width": 1920, "height": 1080 },
+    "meta": { "width": 1280, "height": 960 },
     "annotations": [
       {
         "id": 102,
-        "completed_by": { "email": "annotator1@example.com" },
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
         "result": [
           {
-            "id": "ls_r004",
+            "id": "ls_r002",
             "type": "rectanglelabels",
             "value": {
-              "x": 5.0, "y": 5.0, "width": 20.0, "height": 15.0,
-              "rectanglelabels": ["tank"]
+              "x": 20.0, "y": 25.0, "width": 55.0, "height": 45.0,
+              "rectanglelabels": ["valve"]
             }
           },
           {
-            "id": "ls_r005",
-            "type": "polygonlabels",
-            "value": {
-              "points": [[40.0, 20.0], [60.0, 20.0], [55.0, 40.0], [42.0, 40.0]],
-              "polygonlabels": ["junction"]
-            }
-          }
-        ]
-      },
-      {
-        "id": 103,
-        "completed_by": { "email": "annotator2@example.com" },
-        "result": [
-          {
-            "id": "ls_r006",
+            "id": "ls_r003",
             "type": "rectanglelabels",
             "value": {
-              "x": 5.2, "y": 5.1, "width": 19.8, "height": 14.9,
-              "rectanglelabels": ["tank"]
-            }
-          },
-          {
-            "id": "ls_r007",
-            "type": "rectanglelabels",
-            "value": {
-              "x": 70.0, "y": 30.0, "width": 10.0, "height": 8.0,
-              "rectanglelabels": ["sensor"]
+              "x": 5.0, "y": 35.0, "width": 15.0, "height": 25.0,
+              "rectanglelabels": ["pipe"]
             }
           }
         ]
@@ -94,28 +56,158 @@
   {
     "id": 3,
     "data": {
-      "image": "/data/drawings/gearbox_section_001.png"
+      "image": "/data/drawings/bearing_001.jpg"
     },
-    "meta": { "width": 1920, "height": 1080 },
+    "meta": { "width": 1600, "height": 1200 },
+    "annotations": [
+      {
+        "id": 103,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
+          {
+            "id": "ls_r004",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 30.0, "y": 20.0, "width": 40.0, "height": 60.0,
+              "rectanglelabels": ["bearing"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "data": {
+      "image": "/data/drawings/motor_001.jpg"
+    },
+    "meta": { "width": 1280, "height": 960 },
     "annotations": [
       {
         "id": 104,
-        "completed_by": { "email": "annotator2@example.com" },
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
+          {
+            "id": "ls_r005",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 15.0, "y": 10.0, "width": 65.0, "height": 75.0,
+              "rectanglelabels": ["motor"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "data": {
+      "image": "/data/drawings/gearbox_001.jpg"
+    },
+    "meta": { "width": 1280, "height": 960 },
+    "annotations": [
+      {
+        "id": 105,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
+          {
+            "id": "ls_r006",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 10.0, "y": 15.0, "width": 80.0, "height": 70.0,
+              "rectanglelabels": ["gearbox"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "data": {
+      "image": "/data/drawings/electrical_panel_001.jpg"
+    },
+    "meta": { "width": 1920, "height": 1440 },
+    "annotations": [
+      {
+        "id": 106,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
+          {
+            "id": "ls_r007",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 5.0, "y": 5.0, "width": 90.0, "height": 90.0,
+              "rectanglelabels": ["electrical_panel"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "data": {
+      "image": "/data/drawings/heat_exchanger_001.jpg"
+    },
+    "meta": { "width": 1280, "height": 960 },
+    "annotations": [
+      {
+        "id": 107,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
         "result": [
           {
             "id": "ls_r008",
             "type": "rectanglelabels",
             "value": {
-              "x": 20.0, "y": 25.0, "width": 15.0, "height": 20.0,
-              "rectanglelabels": ["motor"]
+              "x": 20.0, "y": 15.0, "width": 60.0, "height": 70.0,
+              "rectanglelabels": ["heat_exchanger"]
             }
-          },
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "data": {
+      "image": "/data/drawings/air_compressor_001.png"
+    },
+    "meta": { "width": 1920, "height": 1440 },
+    "annotations": [
+      {
+        "id": 108,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
           {
             "id": "ls_r009",
             "type": "rectanglelabels",
             "value": {
-              "x": 50.0, "y": 10.0, "width": 5.0, "height": 5.0,
-              "rectanglelabels": ["fitting"]
+              "x": 10.0, "y": 10.0, "width": 75.0, "height": 80.0,
+              "rectanglelabels": ["air_compressor"]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "data": {
+      "image": "/data/drawings/pipline_001.jpg"
+    },
+    "meta": { "width": 1920, "height": 1080 },
+    "annotations": [
+      {
+        "id": 109,
+        "completed_by": { "email": "goodgentleman918@gmail.com" },
+        "result": [
+          {
+            "id": "ls_r010",
+            "type": "rectanglelabels",
+            "value": {
+              "x": 5.0, "y": 30.0, "width": 90.0, "height": 15.0,
+              "rectanglelabels": ["pipeline"]
             }
           }
         ]

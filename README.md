@@ -1,6 +1,5 @@
 # Engineering Drawing Annotation QA
 
-[![CI](https://github.com/Enterprise-AI-Soutions/Engineering-Drawing-Annotation-QA-Label-Studio-CVAT/actions/workflows/ci.yml/badge.svg)](https://github.com/Enterprise-AI-Soutions/Engineering-Drawing-Annotation-QA-Label-Studio-CVAT/actions)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
@@ -10,7 +9,7 @@ A lightweight, **zero-heavy-dependency** Python pipeline for converting, validat
 
 ## ⚠️ Before You Run
 
-**The pipeline requires your engineering drawing images to be present in `data/drawings/`.**  
+**The pipeline requires your engineering drawing images to be present in `data/drawings/`.**
 It will refuse to run and display a clear error if that folder is missing or empty.
 
 ```
@@ -44,25 +43,30 @@ See [Adding Your Own Drawings](#adding-your-own-drawings) below.
 ```
 Engineering-Drawing-Annotation-QA/
 │
-├── .github/
-│   └── workflows/ci.yml              # GitHub Actions — test on Python 3.10/3.11/3.12
-│
 ├── data/
 │   ├── drawings/                      # ← Your engineering drawing images go here
-│   │   ├── pump_layout_001.png        #   (pipeline will not run without these)
-│   │   ├── piping_layout_001.png
-│   │   ├── gearbox_section_001.png
-│   │   ├── hydraulic_system_001.png
-│   │   ├── motor_wiring_001.png
-│   │   ├── electrical_panel_001.png
-│   │   ├── valve_assembly_001.png
-│   │   ├── compressor_layout_001.png
-│   │   └── process_flow_001.png
+│   │   ├── air_compressor_001.png     #   (pipeline will not run without these)
+│   │   ├── bearing_001.jpg
+│   │   ├── electrical_panel_001.jpg
+│   │   ├── gearbox_001.jpg
+│   │   ├── heat_exchanger_001.jpg
+│   │   ├── motor_001.jpg
+│   │   ├── pipline_001.jpg
+│   │   ├── pump_001.png
+│   │   └── valve_001.jpg
 │   ├── exports/
 │   │   ├── labelstudio/
 │   │   │   └── engineering_annotations.json   # Label Studio JSON export
 │   │   └── cvat/
-│   │       └── annotations.xml                # CVAT XML export
+│   │       ├── air_compressor_001.xml
+│   │       ├── bearing_001.xml
+│   │       ├── electrical_panel_001.xml
+│   │       ├── gearbox_001.xml
+│   │       ├── heat_exchanger_001.xml
+│   │       ├── motor_001.xml
+│   │       ├── pipeline_001.xml
+│   │       ├── pump_001.xml
+│   │       └── valve_001.xml
 │   └── normalized/
 │       └── annotations.json                   # Merged normalized output
 │
@@ -107,6 +111,30 @@ Engineering-Drawing-Annotation-QA/
 
 ---
 
+## Annotation Classes
+
+The following labels are recognised by the pipeline and match the actual CVAT annotation labels used in this project:
+
+| Class | Description |
+|---|---|
+| `pump` | Centrifugal, gear, or positive displacement pumps |
+| `valve` | Gate, ball, check, control valves |
+| `motor` | Electric motors |
+| `pipeline` | Pipeline runs |
+| `bearing` | Bearings and bearing housings |
+| `gearbox` | Gearboxes and gear assemblies |
+| `air_compressor` | Air compressors |
+| `electrical_panel` | Electrical panels and switchgear |
+| `heat_exchanger` | Heat exchangers |
+| `pipe` | Individual pipe sections |
+| `compressor` | General compressors |
+| `sensor` | Sensors and instruments |
+| `tank` | Storage tanks and vessels |
+| `fitting` | Fittings, elbows, tees |
+| `junction` | Pipe junctions |
+
+---
+
 ## Adding Your Own Drawings
 
 > **The pipeline will not run without drawings.** This is intentional — running without images produces meaningless output.
@@ -122,12 +150,14 @@ data/drawings/
 
 Accepted formats: `.png` `.jpg` `.jpeg` `.tif` `.tiff` `.bmp`
 
-**Step 2 — Annotate them in Label Studio or CVAT:**
+**Step 2 — Annotate them in Label Studio or CVAT, then export:**
 
 | Tool | How to export | Save to |
 |---|---|---|
 | **Label Studio** | Project → Export → **JSON** | `data/exports/labelstudio/engineering_annotations.json` |
-| **CVAT** | Actions → Export dataset → **CVAT for Images 1.1** (XML) | `data/exports/cvat/annotations.xml` |
+| **CVAT** | Actions → Export dataset → **CVAT for Images 1.1** (XML) | `data/exports/cvat/<drawing_name>.xml` |
+
+Supported CVAT annotation types: `<box>`, `<polygon>`, `<polyline>`
 
 > The filename inside the annotation export (e.g. `"image": "your_drawing_001.png"`) must exactly match the filename in `data/drawings/`.
 
@@ -177,11 +207,11 @@ python src/convert_labelstudio.py \
     --output data/normalized/annotations.json
 ```
 
-**Convert CVAT XML export:**
+**Convert a CVAT XML export:**
 
 ```bash
 python src/convert_cvat.py \
-    --input  data/exports/cvat/annotations.xml \
+    --input  data/exports/cvat/pump_001.xml \
     --output data/normalized/annotations.json
 ```
 
@@ -190,7 +220,7 @@ python src/convert_cvat.py \
 ```bash
 python src/normalize_annotations.py \
     --inputs data/exports/labelstudio/engineering_annotations.json \
-             data/exports/cvat/annotations.xml \
+             data/exports/cvat/pump_001.xml \
     --output data/normalized/annotations.json
 ```
 
@@ -254,49 +284,27 @@ pytest tests/ -v --cov=src --cov-report=term-missing
 
 ---
 
-## Annotation Classes
-
-| Class | Description |
-|---|---|
-| `pump` | Centrifugal, gear, or positive displacement pumps |
-| `valve` | Gate, ball, check, control valves |
-| `pipe` | Pipes, tubes, conduits |
-| `motor` | Electric motors |
-| `compressor` | Air/gas compressors |
-| `sensor` | Pressure, flow, temperature sensors |
-| `tank` | Storage tanks and vessels |
-| `fitting` | Elbows, tees, reducers |
-| `junction` | Pipe junctions and manifolds |
-| `label_text` | Text labels on drawings |
-| `dimension` | Dimension lines and annotations |
-| `wiring` | Electrical wiring |
-| `panel` | Electrical panels |
-| `switch` | Electrical switches |
-| `relay` | Relays and contactors |
-
----
-
 ## Normalized Annotation Format
 
 ```json
 {
   "schema_version": "1.0",
   "source": "merged",
-  "total_records": 6,
+  "total_records": 10,
   "annotations": [
     {
-      "id": "ann_a1b2c3d4",
-      "image": "pump_layout_001.png",
-      "annotator": "annotator1@example.com",
-      "source": "labelstudio",
-      "image_width": 1920,
-      "image_height": 1080,
+      "id": "ann_cvat_pump001",
+      "image": "pump_001.png",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "cvat",
+      "image_width": 2500,
+      "image_height": 2500,
       "regions": [
         {
-          "id": "ls_r001",
+          "id": "cvat_r001",
           "label": "pump",
-          "type": "bbox",
-          "bbox": [192, 162, 230, 86],
+          "type": "polyline",
+          "polyline": [[422,376],[2351,789]],
           "confidence": 1.0
         }
       ]
@@ -305,14 +313,16 @@ pytest tests/ -v --cov=src --cov-report=term-missing
 }
 ```
 
+Supported region types: `bbox`, `polygon`, `polyline`
+
 ---
 
 ## Supported Export Formats
 
-| Tool | Format | Notes |
+| Tool | Format | Annotation types |
 |---|---|---|
-| **Label Studio** | JSON | Rectangle labels, polygon labels. Percentages converted to pixels. |
-| **CVAT** | XML (v1.1) | `<box>` and `<polygon>` elements. Annotator read from `<meta>`. |
+| **Label Studio** | JSON | `rectanglelabels` → bbox, `polygonlabels` → polygon |
+| **CVAT** | XML (v1.1) | `<box>` → bbox, `<polygon>` → polygon, `<polyline>` → polyline |
 
 ---
 

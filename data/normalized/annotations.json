@@ -1,92 +1,148 @@
 {
   "schema_version": "1.0",
   "source": "merged",
-  "total_records": 6,
+  "total_records": 10,
   "annotations": [
     {
-      "id": "ann_a1b2c3d4",
-      "image": "pump_layout_001.png",
-      "annotator": "annotator1@example.com",
+      "id": "ann_ls_pump001",
+      "image": "pump_001.png",
+      "annotator": "goodgentleman918@gmail.com",
       "source": "labelstudio",
       "task_id": 1,
-      "image_width": 1920,
-      "image_height": 1080,
+      "image_width": 2500,
+      "image_height": 2500,
       "regions": [
-        {"id": "ls_r001", "label": "pump",  "type": "bbox", "bbox": [192, 162, 230, 86],  "confidence": 1.0},
-        {"id": "ls_r002", "label": "valve", "type": "bbox", "bbox": [672, 216, 154, 65],  "confidence": 1.0},
-        {"id": "ls_r003", "label": "pipe",  "type": "bbox", "bbox": [1152, 108, 576, 32], "confidence": 1.0}
+        {"id": "ls_r001", "label": "pump", "type": "bbox",
+         "bbox": [400, 350, 1950, 1375], "confidence": 1.0}
       ]
     },
     {
-      "id": "ann_b2c3d4e5",
-      "image": "piping_layout_001.png",
-      "annotator": "annotator1@example.com",
+      "id": "ann_cvat_pump001",
+      "image": "pump_001.png",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "cvat",
+      "image_id": "0",
+      "image_width": 2500,
+      "image_height": 2500,
+      "regions": [
+        {
+          "id": "cvat_r001",
+          "label": "pump",
+          "type": "polyline",
+          "polyline": [
+            [422,376],[2351,789],[2321,800],[182,1471],[418,346],
+            [337,2131],[345,2116],[2365,1689],[2373,1689],[429,372],
+            [724,1729],[732,1729],[2406,192],[2417,184],[374,346],
+            [411,350],[393,350]
+          ],
+          "confidence": 1.0
+        }
+      ]
+    },
+    {
+      "id": "ann_ls_valve001",
+      "image": "valve_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
       "source": "labelstudio",
       "task_id": 2,
-      "image_width": 1920,
-      "image_height": 1080,
+      "image_width": 1280,
+      "image_height": 960,
       "regions": [
-        {"id": "ls_r004", "label": "tank",     "type": "bbox", "bbox": [96, 54, 384, 162], "confidence": 1.0},
-        {"id": "ls_r005", "label": "junction",  "type": "polygon",
-         "polygon": [[768,216],[1152,216],[1056,432],[806,432]], "confidence": 1.0}
+        {"id": "ls_r002", "label": "valve", "type": "bbox",
+         "bbox": [256, 240, 704, 432], "confidence": 1.0},
+        {"id": "ls_r003", "label": "pipe",  "type": "bbox",
+         "bbox": [64, 336, 192, 240], "confidence": 1.0}
       ]
     },
     {
-      "id": "ann_c3d4e5f6",
-      "image": "piping_layout_001.png",
-      "annotator": "annotator2@example.com",
+      "id": "ann_ls_bearing001",
+      "image": "bearing_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
       "source": "labelstudio",
-      "task_id": 2,
-      "image_width": 1920,
-      "image_height": 1080,
+      "task_id": 3,
+      "image_width": 1600,
+      "image_height": 1200,
       "regions": [
-        {"id": "ls_r006", "label": "tank",   "type": "bbox", "bbox": [100, 55, 380, 161], "confidence": 1.0},
-        {"id": "ls_r007", "label": "sensor", "type": "bbox", "bbox": [1344, 324, 192, 86], "confidence": 1.0}
+        {"id": "ls_r004", "label": "bearing", "type": "bbox",
+         "bbox": [480, 240, 640, 720], "confidence": 1.0}
       ]
     },
     {
-      "id": "ann_d4e5f6g7",
-      "image": "hydraulic_system_001.png",
-      "annotator": "cvat_annotator@example.com",
-      "source": "cvat",
-      "image_width": 1920,
-      "image_height": 1080,
+      "id": "ann_ls_motor001",
+      "image": "motor_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 4,
+      "image_width": 1280,
+      "image_height": 960,
       "regions": [
-        {"id": "cvat_r001", "label": "pump",   "type": "bbox", "bbox": [120, 180, 220, 140], "confidence": 1.0},
-        {"id": "cvat_r002", "label": "valve",  "type": "bbox", "bbox": [450, 200, 130, 90],  "confidence": 1.0},
-        {"id": "cvat_r003", "label": "pipe",   "type": "bbox", "bbox": [580, 240, 320, 30],  "confidence": 1.0},
-        {"id": "cvat_r004", "label": "sensor", "type": "bbox", "bbox": [900, 220, 60, 60],   "confidence": 1.0},
-        {"id": "cvat_r005", "label": "tank",   "type": "polygon",
-         "polygon": [[100,400],[300,400],[300,600],[100,600]], "confidence": 1.0}
+        {"id": "ls_r005", "label": "motor", "type": "bbox",
+         "bbox": [192, 96, 832, 720], "confidence": 1.0}
       ]
     },
     {
-      "id": "ann_e5f6g7h8",
-      "image": "motor_wiring_001.png",
-      "annotator": "cvat_annotator@example.com",
-      "source": "cvat",
-      "image_width": 1920,
-      "image_height": 1080,
+      "id": "ann_ls_gearbox001",
+      "image": "gearbox_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 5,
+      "image_width": 1280,
+      "image_height": 960,
       "regions": [
-        {"id": "cvat_r006", "label": "motor",  "type": "bbox", "bbox": [200, 150, 300, 250], "confidence": 1.0},
-        {"id": "cvat_r007", "label": "wiring", "type": "bbox", "bbox": [500, 250, 400, 40],  "confidence": 1.0},
-        {"id": "cvat_r008", "label": "panel",  "type": "bbox", "bbox": [950, 100, 250, 350], "confidence": 1.0},
-        {"id": "cvat_r009", "label": "switch", "type": "bbox", "bbox": [1000, 150, 80, 60],  "confidence": 1.0}
+        {"id": "ls_r006", "label": "gearbox", "type": "bbox",
+         "bbox": [128, 144, 1024, 672], "confidence": 1.0}
       ]
     },
     {
-      "id": "ann_f6g7h8i9",
-      "image": "valve_assembly_001.png",
-      "annotator": "cvat_annotator@example.com",
-      "source": "cvat",
+      "id": "ann_ls_panel001",
+      "image": "electrical_panel_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 6,
+      "image_width": 1920,
+      "image_height": 1440,
+      "regions": [
+        {"id": "ls_r007", "label": "electrical_panel", "type": "bbox",
+         "bbox": [96, 72, 1728, 1296], "confidence": 1.0}
+      ]
+    },
+    {
+      "id": "ann_ls_heat001",
+      "image": "heat_exchanger_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 7,
+      "image_width": 1280,
+      "image_height": 960,
+      "regions": [
+        {"id": "ls_r008", "label": "heat_exchanger", "type": "bbox",
+         "bbox": [256, 144, 768, 672], "confidence": 1.0}
+      ]
+    },
+    {
+      "id": "ann_ls_compressor001",
+      "image": "air_compressor_001.png",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 8,
+      "image_width": 1920,
+      "image_height": 1440,
+      "regions": [
+        {"id": "ls_r009", "label": "air_compressor", "type": "bbox",
+         "bbox": [192, 144, 1440, 1152], "confidence": 1.0}
+      ]
+    },
+    {
+      "id": "ann_ls_pipeline001",
+      "image": "pipline_001.jpg",
+      "annotator": "goodgentleman918@gmail.com",
+      "source": "labelstudio",
+      "task_id": 9,
       "image_width": 1920,
       "image_height": 1080,
       "regions": [
-        {"id": "cvat_r010", "label": "valve",   "type": "bbox", "bbox": [300, 200, 250, 200], "confidence": 1.0},
-        {"id": "cvat_r011", "label": "pipe",    "type": "bbox", "bbox": [100, 280, 200, 40],  "confidence": 1.0},
-        {"id": "cvat_r012", "label": "pipe",    "type": "bbox", "bbox": [550, 280, 250, 40],  "confidence": 1.0},
-        {"id": "cvat_r013", "label": "fitting", "type": "bbox", "bbox": [280, 270, 40, 60],   "confidence": 1.0},
-        {"id": "cvat_r014", "label": "fitting", "type": "bbox", "bbox": [540, 270, 30, 60],   "confidence": 1.0}
+        {"id": "ls_r010", "label": "pipeline", "type": "bbox",
+         "bbox": [96, 324, 1728, 162], "confidence": 1.0}
       ]
     }
   ]

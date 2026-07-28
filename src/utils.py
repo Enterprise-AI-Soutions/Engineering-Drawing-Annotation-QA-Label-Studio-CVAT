@@ -127,9 +127,13 @@ def new_id(prefix: str = "ann") -> str:
 NORMALIZED_SCHEMA_VERSION = "1.0"
 
 VALID_LABELS = {
-    "pump", "valve", "pipe", "motor", "compressor",
-    "sensor", "tank", "fitting", "junction", "label_text",
-    "dimension", "wiring", "panel", "switch", "relay",
+    # Core mechanical components (from actual CVAT annotations)
+    "pump", "valve", "motor", "pipeline", "bearing",
+    "gearbox", "air_compressor", "electrical_panel", "heat_exchanger",
+    # Additional engineering classes
+    "pipe", "compressor", "sensor", "tank", "fitting",
+    "junction", "label_text", "dimension", "wiring", "panel",
+    "switch", "relay",
 }
 
 def validate_label(label: str) -> bool:
