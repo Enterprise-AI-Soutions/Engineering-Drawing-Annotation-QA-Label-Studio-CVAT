@@ -144,16 +144,89 @@ data/drawings/
 
 Accepted formats: `.png` `.jpg` `.jpeg` `.tif` `.tiff` `.bmp`
 
-**Step 2 — Annotate them in Label Studio or CVAT, then export:**
+**Step 2 — Annotate them in CVAT or Label Studio using Docker, then export:**
 
 | Tool | How to export | Save to |
 |---|---|---|
-| **Label Studio** | Project → Export → **JSON** | `data/exports/labelstudio/engineering_annotations.json` |
 | **CVAT** | Actions → Export dataset → **CVAT for Images 1.1** (XML) | `data/exports/cvat/<drawing_name>.xml` |
+| **Label Studio** | Project → Export → **JSON** | `data/exports/labelstudio/engineering_annotations.json` |
 
 Supported CVAT annotation types: `<box>`, `<polygon>`, `<polyline>`
 
 > The filename inside the annotation export (e.g. `"image": "your_drawing_001.png"`) must exactly match the filename in `data/drawings/`.
+
+### CVAT Annotation using Docker
+Verify Docker
+
+docker --version
+
+docker compose version
+
+Test:
+
+docker run hello-world
+
+You should see
+
+Hello from Docker!
+
+Install CVAT Community Edition (https://github.com/cvat-ai/cvat)
+
+Clone CVAT
+
+git clone https://github.com/cvat-ai/cvat.git
+
+cd cvat
+
+Start CVAT
+
+docker compose up -d
+
+First launch downloads several Docker images, so it can take 10–20 minutes
+
+Check containers
+
+docker ps
+
+Create administrator
+
+docker exec -it cvat_server bash
+
+python3 ~/manage.py createsuperuser
+
+Username - your username
+
+Email -    your email
+
+Open - http://localhost:8080
+
+Enter Login & password
+
+Superuser created successfully for drawings/image annotation
+
+Exit
+
+exit
+
+### Label Studio Annotation using Docker
+
+Windows Powershell
+
+docker run -it `
+
+-p 8081:8080 `
+
+-v ${PWD}/data:/label-studio/data `
+
+heartexlabs/label-studio:latest
+
+Visit
+
+http://localhost:8081
+
+Create your account for image/drawings annotation
+
+### This repository only used CVAT Annotation using Docker while building
 
 ---
 
