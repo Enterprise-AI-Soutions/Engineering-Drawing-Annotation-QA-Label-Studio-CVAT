@@ -398,6 +398,10 @@ Supported region types: `bbox`, `polygon`, `polyline`
 | **CVAT** | XML (v1.1) | `<box>` → bbox, `<polygon>` → polygon, `<polyline>` → polyline |
 
 ---
+### Pytest Outputs
+
+/data/output/review 
+
 
 ## License
 
