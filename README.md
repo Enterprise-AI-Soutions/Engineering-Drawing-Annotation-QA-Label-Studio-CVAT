@@ -126,12 +126,6 @@ The following labels are recognised by the pipeline and match the actual CVAT an
 | `air_compressor` | Air compressors |
 | `electrical_panel` | Electrical panels and switchgear |
 | `heat_exchanger` | Heat exchangers |
-| `pipe` | Individual pipe sections |
-| `compressor` | General compressors |
-| `sensor` | Sensors and instruments |
-| `tank` | Storage tanks and vessels |
-| `fitting` | Fittings, elbows, tees |
-| `junction` | Pipe junctions |
 
 ---
 
@@ -176,6 +170,8 @@ Supported CVAT annotation types: `<box>`, `<polygon>`, `<polyline>`
 ```bash
 git clone https://github.com/Enterprise-AI-Soutions/Engineering-Drawing-Annotation-QA-Label-Studio-CVAT.git
 cd Engineering-Drawing-Annotation-QA
+```
+```
 pip install -r requirements.txt
 ```
 
@@ -202,69 +198,69 @@ bash scripts/run_pipeline.sh
 **Convert Label Studio export:**
 
 ```bash
-python src/convert_labelstudio.py \
-    --input  data/exports/labelstudio/engineering_annotations.json \
+python src/convert_labelstudio.py `
+    --input  data/exports/labelstudio/engineering_annotations.json `
     --output data/normalized/annotations.json
 ```
 
 **Convert a CVAT XML export:**
 
 ```bash
-python src/convert_cvat.py \
-    --input  data/exports/cvat/pump_001.xml \
+python src/convert_cvat.py `
+    --input  data/exports/cvat/pump_001.xml `
     --output data/normalized/annotations.json
 ```
 
 **Merge multiple sources:**
 
 ```bash
-python src/normalize_annotations.py \
-    --inputs data/exports/labelstudio/engineering_annotations.json \
-             data/exports/cvat/pump_001.xml \
+python src/normalize_annotations.py `
+    --inputs data/exports/labelstudio/engineering_annotations.json `
+             data/exports/cvat/pump_001.xml `
     --output data/normalized/annotations.json
 ```
 
 **Validate:**
 
 ```bash
-python src/validate_annotations.py \
-    --input  data/normalized/annotations.json \
+python src/validate_annotations.py `
+    --input  data/normalized/annotations.json `
     --output reports/validation_report.json
 ```
 
 **Inter-annotator agreement:**
 
 ```bash
-python src/agreement_analysis.py \
-    --input  data/normalized/annotations.json \
+python src/agreement_analysis.py `
+    --input  data/normalized/annotations.json `
     --output reports/agreement_summary.json
 ```
 
 **Build review queue:**
 
 ```bash
-python src/create_review_queue.py \
-    --validation reports/validation_report.json \
-    --agreement  reports/agreement_summary.json \
+python src/create_review_queue.py `
+    --validation reports/validation_report.json `
+    --agreement  reports/agreement_summary.json `
     --output     reports/review_queue.csv
 ```
 
 **Generate full report:**
 
 ```bash
-python src/generate_report.py \
-    --validation reports/validation_report.json \
-    --agreement  reports/agreement_summary.json \
-    --queue      reports/review_queue.csv \
+python src/generate_report.py `
+    --validation reports/validation_report.json `
+    --agreement  reports/agreement_summary.json `
+    --queue      reports/review_queue.csv `
     --output     reports/annotation_report.md
 ```
 
 **Draw annotations on images (requires Pillow):**
 
 ```bash
-python src/draw_annotations.py \
-    --annotations data/normalized/annotations.json \
-    --drawings    data/drawings \
+python src/draw_annotations.py `
+    --annotations data/normalized/annotations.json `
+    --drawings    data/drawings `
     --output      outputs/review_images
 ```
 
